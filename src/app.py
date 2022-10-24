@@ -42,10 +42,10 @@ def handle_one_member(member_id):
     # this is how you can use the Family datastructure by calling its methods
     member = jackson_family.get_member(member_id)
 
-    if member == True:
-        return jsonify(member), 200
-    else:
+    if member == False:
         return "La ID ingresada no existe", 404
+    else:
+        return jsonify(member), 200
 
 #Agregamos un nuevo miembro a la familia
 @app.route('/member', methods=['POST'])

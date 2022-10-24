@@ -58,14 +58,18 @@ class FamilyStructure:
     def delete_member(self, id):
         if len(self._members) == 1:
             return "last"
+        id_exist = False
         for item in self._members:
             if item["id"] == id:
                 self._members.remove(item)
-                return True
-            else:
-                return False
+                id_exist = True
+        if id_exist == True:
+            return True
+        else:
+            return False
 
     def update_member(self, id, member):
+        id_exist = False
         for item in self._members:
             if item["id"] == id:
                 if "first_name" in member:
@@ -76,16 +80,24 @@ class FamilyStructure:
                     item["age"] = member["age"]
                 if "lucky_numbers" in member:
                     item["lucky_numbers"] = member["lucky_numbers"]
-                return True
-            else:
-                return False
+                id_exist = True
+        if id_exist == True:
+            return True
+        else:
+            return False
 
     def get_member(self, id):
+        my_item = None
+        id_exist = False
         for item in self._members:
             if item["id"] == id:
-                return True
-            else:
-                return False
+                id_exist = True
+                my_item = item
+        if id_exist == False:
+            return False
+        else:
+            return my_item
+            
 
     # this method is done, it returns a list with all the family members
     def get_all_members(self):
